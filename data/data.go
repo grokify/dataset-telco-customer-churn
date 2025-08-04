@@ -9,12 +9,12 @@ import (
 
 const (
 	ColumnCustomerID     = "customerID"
-	ColumnCreatedTime    = "createdTime"
+	ColumnCreatedAt      = "created_at"
 	ColumnTenure         = "tenure"
 	ColumnMonthlyCharges = "MonthlyCharges"
 	ColumnTotalCharges   = "TotalCharges"
 
-	TableName = "customers"
+	TableNameCustomers = "customers"
 )
 
 //go:embed WA_Fn-UseC_-Telco-Customer-Churn.csv
