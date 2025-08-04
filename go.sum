@@ -5,10 +5,10 @@ github.com/fatih/color v1.18.0/go.mod h1:4FelSpRwEGDpQ12mAdzqdOukCy4u8WUtOY6lkT/
 github.com/go-sql-driver/mysql v1.8.1/go.mod h1:wEBSXgmK//2ZFJyE+qWnIsVGmvmEKlqwuVSjsCm7DZg=
 github.com/go-sql-driver/mysql v1.9.3 h1:U/N249h2WzJ3Ukj8SowVFjdtZKfu9vlLZxjPXV1aweo=
 github.com/go-sql-driver/mysql v1.9.3/go.mod h1:qn46aNg1333BRMNU69Lq93t8du/dwxI64Gl8i5p1WMU=
-github.com/grokify/gocharts/v2 v2.24.16 h1:tQunJgYstg/rkqXQot+81cqvcy0n1N62SvVy/ANaRM0=
-github.com/grokify/gocharts/v2 v2.24.16/go.mod h1:ln5YQrhtYgbpYxQ3tYpKpnoV2TCvsUFOVbYEgWQo+T8=
-github.com/grokify/mogo v0.70.14 h1:61wx83OZmKwL5XSNfiDmhMMSU10oldVgfbINp3J0iaA=
-github.com/grokify/mogo v0.70.14/go.mod h1:VIO/CycVjfvZAMwx6bQMI490nV5EPkSS2H9AjKfq27Y=
+github.com/grokify/gocharts/v2 v2.24.17 h1:4lc6h3bD3wNDCHxlQhF6NeZAABtn5SW8p/IOZQFzePU=
+github.com/grokify/gocharts/v2 v2.24.17/go.mod h1:xnfm5UJjmZDs7Be1LPfWqnRZ9oZ0UurOsUX5Uk4lTo0=
+github.com/grokify/mogo v0.70.15 h1:v9pNiSnvrschGFPgqcU3TZpgSjWBOqSdTS9z2XvSyqM=
+github.com/grokify/mogo v0.70.15/go.mod h1:VIO/CycVjfvZAMwx6bQMI490nV5EPkSS2H9AjKfq27Y=
 github.com/huandu/xstrings v1.5.0 h1:2ag3IFq9ZDANvthTwTiqSSZLjDc+BedvHPAp5tJy2TI=
 github.com/huandu/xstrings v1.5.0/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq4ovT0aE=
 github.com/jmoiron/sqlx v1.4.0 h1:1PLqN7S1UYp5t4SrVVnt4nUVNemrDAtxlulVe+Qgm3o=
