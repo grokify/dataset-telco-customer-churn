@@ -68,12 +68,12 @@ func ConnectSQLX(ds datasource.DataSource) (*sqlx.DB, error) {
 	}
 }
 
-func (clt *Client) CreateTable(tblName string) error {
-	if clt.Database == nil {
+func (c *Client) CreateTable(tblName string) error {
+	if c.Database == nil {
 		return ErrSQLXClientMustBeSet
 	} else if qry, err := SQLCreateTableCustomers(tblName); err != nil {
 		return err
-	} else if _, err = clt.Database.Exec(qry); err != nil {
+	} else if _, err = c.Database.Exec(qry); err != nil {
 		if err := ErrorExcludeDuplicate(err, ErrNoMySQLDuplicateTable); err != nil {
 			return err
 		} else {
@@ -84,8 +84,8 @@ func (clt *Client) CreateTable(tblName string) error {
 	}
 }
 
-func (clt *Client) InsertData(tblName string) error {
-	if clt.Database == nil {
+func (c *Client) InsertData(tblName string) error {
+	if c.Database == nil {
 		return ErrSQLXClientMustBeSet
 	} else if !sqlutil.IsUnquotedIdentifier(tblName) {
 		return fmt.Errorf("supplied table name (%s) is not valid unquoted identifier", tblName)
@@ -99,7 +99,7 @@ func (clt *Client) InsertData(tblName string) error {
 		return err
 	}
 
-	insertStmt, err := clt.Database.PrepareNamed(insertSQL)
+	insertStmt, err := c.Database.PrepareNamed(insertSQL)
 	if err != nil {
 		return err
 	}
