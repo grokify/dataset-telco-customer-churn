@@ -9,7 +9,6 @@ import (
 	"github.com/grokify/mogo/database/datasource"
 	"github.com/grokify/mogo/database/sqlutil"
 	"github.com/grokify/mogo/errors/errorsutil"
-	"github.com/grokify/mogo/fmt/fmtutil"
 	"github.com/grokify/mogo/strconv/strconvutil"
 	"github.com/grokify/mogo/time/timeutil"
 	"github.com/jmoiron/sqlx"
@@ -93,7 +92,6 @@ func docToDocA(doc map[string]string) (map[string]any, error) {
 				if v2 := strings.TrimSpace(v); v2 == "" {
 					doca[data.ColumnTenure] = int(0)
 				} else if v2, err := strconv.Atoi(v); err != nil {
-					fmtutil.PrintJSON(doc)
 					return doca, errorsutil.Wrapf(err, "colName (%s)", colName)
 				} else {
 					doca[data.ColumnTenure] = v2
