@@ -1,6 +1,7 @@
 package mysql
 
 import (
+	"fmt"
 	"slices"
 	"strconv"
 	"strings"
@@ -16,8 +17,11 @@ import (
 	"github.com/grokify/dataset-telco-customer-churn/data"
 )
 
-func SQLCreateTableCustomers() string {
-	return `CREATE TABLE customers (
+func SQLCreateTableCustomers(tblName string) (string, error) {
+	if !sqlutil.IsUnquotedIdentifier(tblName) {
+		return "", fmt.Errorf("supplied table name (%s) is not valid unquoted identifier", tblName)
+	}
+	return fmt.Sprintf(`CREATE TABLE %s (
 	customerID varchar(255) NOT NULL,
 	Churn ENUM("No","Yes"),
 	Contract ENUM("Month-to-month","One year","Two year"),
@@ -39,9 +43,21 @@ func SQLCreateTableCustomers() string {
 	tenure int DEFAULT 0,
 	MonthlyCharges DECIMAL(10,2) DEFAULT 0,
 	TotalCharges DECIMAL(10,2) DEFAULT 0,
-	createdTime DATETIME NOT NULL,
+	%s DATETIME NOT NULL,
 	PRIMARY KEY (customerID)
-);`
+);`, tblName, data.ColumnCreatedAt), nil
+}
+
+type Client struct {
+	Database *sqlx.DB
+}
+
+func NewClient(ds datasource.DataSource) (*Client, error) {
+	db, err := ConnectSQLX(ds)
+	if err != nil {
+		return nil, err
+	}
+	return &Client{Database: db}, nil
 }
 
 func ConnectSQLX(ds datasource.DataSource) (*sqlx.DB, error) {
@@ -52,20 +68,36 @@ func ConnectSQLX(ds datasource.DataSource) (*sqlx.DB, error) {
 	}
 }
 
-func InsertData(ds datasource.DataSource) error {
-	db, err := ConnectSQLX(ds)
-	if err != nil {
+func (clt *Client) CreateTable(tblName string) error {
+	if clt.Database == nil {
+		return ErrSQLXClientMustBeSet
+	} else if qry, err := SQLCreateTableCustomers(tblName); err != nil {
 		return err
+	} else if _, err = clt.Database.Exec(qry); err != nil {
+		if err := ErrorExcludeDuplicate(err, ErrNoMySQLDuplicateTable); err != nil {
+			return err
+		} else {
+			return nil
+		}
+	} else {
+		return nil
 	}
+}
+
+func (clt *Client) InsertData() error {
+	if clt.Database == nil {
+		return ErrSQLXClientMustBeSet
+	}
+
 	tbl := data.DataTable()
 	cols2 := slices.Clone(tbl.Columns)
-	cols2 = append(cols2, data.ColumnCreatedTime)
-	insertSQL, err := sqlutil.BuildSQLXInsertSQLNamedParams(data.TableName, cols2)
+	cols2 = append(cols2, data.ColumnCreatedAt)
+	insertSQL, err := sqlutil.BuildSQLXInsertSQLNamedParams(data.TableNameCustomers, cols2)
 	if err != nil {
 		return err
 	}
 
-	insertStmt, err := db.PrepareNamed(insertSQL)
+	insertStmt, err := clt.Database.PrepareNamed(insertSQL)
 	if err != nil {
 		return err
 	}
@@ -76,7 +108,7 @@ func InsertData(ds datasource.DataSource) error {
 		if err != nil {
 			return err
 		} else if _, err = insertStmt.Exec(doca); err != nil {
-			if err := ErrorExcludeDuplicateEntry(err); err != nil {
+			if err := ErrorExcludeDuplicate(err, ErrNoMySQLDuplicateEntry); err != nil {
 				return err
 			}
 		}
@@ -133,12 +165,12 @@ func docToDocA(doc map[string]string) (map[string]any, error) {
 	if tenure, ok := doca[data.ColumnTenure]; ok {
 		teni := tenure.(int)
 		if teni <= 0 {
-			doca[data.ColumnCreatedTime] = dtNow
+			doca[data.ColumnCreatedAt] = dtNow
 		} else {
-			doca[data.ColumnCreatedTime] = dtNow.Add(-1 * timeutil.Day * 30 * time.Duration(teni))
+			doca[data.ColumnCreatedAt] = dtNow.Add(-1 * timeutil.Day * 30 * time.Duration(teni))
 		}
 	} else {
-		doca[data.ColumnCreatedTime] = dtNow
+		doca[data.ColumnCreatedAt] = dtNow
 	}
 	return doca, nil
 }
