@@ -27,7 +27,7 @@ This is a Go module for using the "Telco Customer Churn" dataset posted to Kaggl
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/dataset-telco-customer-churn
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/dataset-telco-customer-churn
  [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/dataset-telco-customer-churn
- [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/dataset-telco-customer-churn/v2
+ [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/dataset-telco-customer-churn
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
  [license-url]: https://github.com/grokify/dataset-telco-customer-churn/blob/main/LICENSE
  [used-by-svg]: https://sourcegraph.com/github.com/grokify/dataset-telco-customer-churn/-/badge.svg
