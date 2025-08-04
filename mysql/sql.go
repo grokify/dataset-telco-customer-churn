@@ -84,15 +84,17 @@ func (clt *Client) CreateTable(tblName string) error {
 	}
 }
 
-func (clt *Client) InsertData() error {
+func (clt *Client) InsertData(tblName string) error {
 	if clt.Database == nil {
 		return ErrSQLXClientMustBeSet
+	} else if !sqlutil.IsUnquotedIdentifier(tblName) {
+		return fmt.Errorf("supplied table name (%s) is not valid unquoted identifier", tblName)
 	}
 
 	tbl := data.DataTable()
 	cols2 := slices.Clone(tbl.Columns)
 	cols2 = append(cols2, data.ColumnCreatedAt)
-	insertSQL, err := sqlutil.BuildSQLXInsertSQLNamedParams(data.TableNameCustomers, cols2)
+	insertSQL, err := sqlutil.BuildSQLXInsertSQLNamedParams(tblName, cols2)
 	if err != nil {
 		return err
 	}
