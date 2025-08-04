@@ -44,7 +44,7 @@ func SQLCreateTableCustomers() string {
 );`
 }
 
-func connectSQLXDB(ds datasource.DataSource) (*sqlx.DB, error) {
+func ConnectSQLX(ds datasource.DataSource) (*sqlx.DB, error) {
 	if dsn, err := ds.Name(); err != nil {
 		return nil, err
 	} else {
@@ -53,7 +53,7 @@ func connectSQLXDB(ds datasource.DataSource) (*sqlx.DB, error) {
 }
 
 func InsertData(ds datasource.DataSource) error {
-	db, err := connectSQLXDB(ds)
+	db, err := ConnectSQLX(ds)
 	if err != nil {
 		return err
 	}
@@ -76,7 +76,9 @@ func InsertData(ds datasource.DataSource) error {
 		if err != nil {
 			return err
 		} else if _, err = insertStmt.Exec(doca); err != nil {
-			return err
+			if err := ErrorExcludeDuplicateEntry(err); err != nil {
+				return err
+			}
 		}
 	}
 
