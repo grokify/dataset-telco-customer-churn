@@ -5,7 +5,7 @@ go 1.24.5
 require (
 	github.com/go-sql-driver/mysql v1.9.3
 	github.com/grokify/gocharts/v2 v2.24.17
-	github.com/grokify/mogo v0.70.15
+	github.com/grokify/mogo v0.70.16
 	github.com/jmoiron/sqlx v1.4.0
 )
 
