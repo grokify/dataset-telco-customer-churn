@@ -1,11 +1,11 @@
 module github.com/grokify/dataset-telco-customer-churn
 
-go 1.25.0
+go 1.26.0
 
 require (
 	github.com/go-sql-driver/mysql v1.9.3
 	github.com/grokify/gocharts/v2 v2.26.9
-	github.com/grokify/mogo v0.73.5
+	github.com/grokify/mogo v0.74.1
 	github.com/jmoiron/sqlx v1.4.0
 )
 
@@ -34,7 +34,7 @@ require (
 	github.com/xuri/nfp v0.0.2-0.20250530014748-2ddeb826f9a9 // indirect
 	golang.org/x/crypto v0.49.0 // indirect
 	golang.org/x/exp v0.0.0-20260312153236-7ab1446f8b90 // indirect
-	golang.org/x/image v0.37.0 // indirect
+	golang.org/x/image v0.38.0 // indirect
 	golang.org/x/net v0.52.0 // indirect
 	golang.org/x/sys v0.42.0 // indirect
 	golang.org/x/text v0.35.0 // indirect
