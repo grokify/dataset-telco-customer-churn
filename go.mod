@@ -3,7 +3,7 @@ module github.com/grokify/dataset-telco-customer-churn
 go 1.25.0
 
 require (
-	github.com/go-sql-driver/mysql v1.9.3
+	github.com/go-sql-driver/mysql v1.10.0
 	github.com/grokify/gocharts/v2 v2.26.9
 	github.com/grokify/mogo v0.73.5
 	github.com/jmoiron/sqlx v1.4.0
