@@ -5,7 +5,7 @@ go 1.26.0
 require (
 	github.com/go-sql-driver/mysql v1.10.1
 	github.com/grokify/gocharts/v2 v2.27.0
-	github.com/grokify/mogo v0.74.8
+	github.com/grokify/mogo v0.74.9
 	github.com/jmoiron/sqlx v1.4.0
 )
 
@@ -16,7 +16,7 @@ require (
 	github.com/clipperhouse/uax29/v2 v2.7.0 // indirect
 	github.com/fatih/color v1.19.0 // indirect
 	github.com/goccy/go-json v0.10.6 // indirect
-	github.com/huandu/xstrings v1.5.0 // indirect
+	github.com/huandu/xstrings v1.6.0 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.22 // indirect
 	github.com/mattn/go-runewidth v0.0.23 // indirect
@@ -32,10 +32,10 @@ require (
 	github.com/xuri/efp v0.0.1 // indirect
 	github.com/xuri/excelize/v2 v2.10.1 // indirect
 	github.com/xuri/nfp v0.0.2-0.20250530014748-2ddeb826f9a9 // indirect
-	golang.org/x/crypto v0.55.0 // indirect
-	golang.org/x/exp v0.0.0-20260820142414-ca536658362e // indirect
-	golang.org/x/image v0.45.0 // indirect
-	golang.org/x/net v0.58.0 // indirect
-	golang.org/x/sys v0.47.0 // indirect
-	golang.org/x/text v0.41.0 // indirect
+	golang.org/x/crypto v0.57.0 // indirect
+	golang.org/x/exp v0.0.0-20260908205506-85c1c2202aba // indirect
+	golang.org/x/image v0.46.0 // indirect
+	golang.org/x/net v0.59.0 // indirect
+	golang.org/x/sys v0.48.0 // indirect
+	golang.org/x/text v0.42.0 // indirect
 )
